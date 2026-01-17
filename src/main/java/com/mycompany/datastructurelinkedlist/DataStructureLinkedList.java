@@ -4,6 +4,7 @@
 
 package com.mycompany.datastructurelinkedlist;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -25,6 +26,19 @@ class LinkedListOperations{
             list.remove(Integer.valueOf(value)); // removes first occurrence
         }
         
+        void sort() {
+            Collections.sort(list);
+        }
+        
+        void edit(int oldValue, int newValue) {
+            int index = list.indexOf(oldValue);
+            if (index == -1) {
+                System.out.println("Value not found.");
+                return;
+            }
+            list.set(index, newValue);
+        }   
+        
         void display() {
             System.out.println("\nLinked List: " + list);
         }
@@ -43,7 +57,9 @@ public class DataStructureLinkedList {
                     System.out.println("[1] PRINT Linked List \n");
                     System.out.println("[2] Add an element to the Linked List \n");
                     System.out.println("[3] Delete an element to the Linked List \n");
-                    System.out.println("[4] Exit");
+                    System.out.println("[4] Sort the Linked List \n");
+                    System.out.println("[5] Edit a certain node from the Linked List \n");
+                    System.out.println("[6] Exit");
 
                     Scanner scanner = new Scanner(System.in);
                     String option;
@@ -63,6 +79,16 @@ public class DataStructureLinkedList {
                         listOperations.delete(scanner.nextInt());
                     }
                     if(option.equals("4")){
+                        listOperations.sort();
+                    }
+                    if(option.equals("5")){
+                        System.out.print("Enter a number to edit: ");
+                        Integer valueToFind = scanner.nextInt();
+                        System.out.print("Enter the new value: ");
+                        Integer newValue = scanner.nextInt();
+                        listOperations.edit(valueToFind, newValue);
+                    }
+                    if(option.equals("6")){
                         cont = false;
                     }
 
