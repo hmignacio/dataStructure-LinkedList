@@ -20,8 +20,13 @@ class LinkedListOperations{
             list.add(value);
         }
         
+        // Delete element
+        void delete(int value) {
+            list.remove(Integer.valueOf(value)); // removes first occurrence
+        }
+        
         void display() {
-            System.out.println(list);
+            System.out.println("\nLinked List: " + list);
         }
         
     }
@@ -37,7 +42,8 @@ public class DataStructureLinkedList {
                     System.out.println("\nWelcome! Choose from the options below: \n");
                     System.out.println("[1] PRINT Linked List \n");
                     System.out.println("[2] Add an element to the Linked List \n");
-                    System.out.println("[3] Exit");
+                    System.out.println("[3] Delete an element to the Linked List \n");
+                    System.out.println("[4] Exit");
 
                     Scanner scanner = new Scanner(System.in);
                     String option;
@@ -53,6 +59,10 @@ public class DataStructureLinkedList {
                         listOperations.add(scanner.nextInt());
                     }
                     if(option.equals("3")){
+                        System.out.print("Enter a number to delete: ");
+                        listOperations.delete(scanner.nextInt());
+                    }
+                    if(option.equals("4")){
                         cont = false;
                     }
 
