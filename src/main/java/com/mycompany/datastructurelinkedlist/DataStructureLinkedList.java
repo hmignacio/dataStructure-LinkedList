@@ -5,23 +5,20 @@
 package com.mycompany.datastructurelinkedlist;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-/**
- *
- * @author Admin
- */
 
 class LinkedListOperations{
         LinkedList<Integer> list = new LinkedList<>();
         
-        // Add element
+
         void add(int value) {
             list.add(value);
         }
         
-        // Delete element
+
         void delete(int value) {
             list.remove(Integer.valueOf(value)); // removes first occurrence
         }
@@ -37,7 +34,25 @@ class LinkedListOperations{
                 return;
             }
             list.set(index, newValue);
-        }   
+        } 
+        
+        boolean search(int value) {
+            return list.contains(value);
+        }
+        
+ 
+        void merge(LinkedList<Integer> otherList) {
+            list.addAll(otherList);
+            System.out.println("\n Merged Successfully");
+        }
+
+        HashMap<Integer, Integer> toHashMap() {
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for (Integer val : list) {
+                map.put(val, map.getOrDefault(val, 0) + 1);
+            }
+            return map;
+        }
         
         void display() {
             System.out.println("\nLinked List: " + list);
@@ -59,7 +74,10 @@ public class DataStructureLinkedList {
                     System.out.println("[3] Delete an element to the Linked List \n");
                     System.out.println("[4] Sort the Linked List \n");
                     System.out.println("[5] Edit a certain node from the Linked List \n");
-                    System.out.println("[6] Exit");
+                    System.out.println("[6] Search a certain node from the Linked List \n");
+                    System.out.println("[7] Merge another Linked List \n");
+                    System.out.println("[8] Transform the Linked list into a Hash \n");
+                    System.out.println("[9] Exit");
 
                     Scanner scanner = new Scanner(System.in);
                     String option;
@@ -89,6 +107,20 @@ public class DataStructureLinkedList {
                         listOperations.edit(valueToFind, newValue);
                     }
                     if(option.equals("6")){
+                        System.out.print("Enter a number to search: ");
+                        System.out.println("Value found? " + listOperations.search(scanner.nextInt()));
+                    }
+                    if(option.equals("7")){
+                        LinkedList<Integer> anotherList = new LinkedList<>();
+                        anotherList.add(40);
+                        anotherList.add(50);
+                        listOperations.merge(anotherList);
+                    }
+                    if(option.equals("8")){
+                        HashMap<Integer, Integer> freqMap = listOperations.toHashMap();
+                        System.out.println("HashMap: " + freqMap);
+                    }
+                    if(option.equals("9")){
                         cont = false;
                     }
 
